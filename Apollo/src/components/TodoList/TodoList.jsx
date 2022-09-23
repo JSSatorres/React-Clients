@@ -1,5 +1,8 @@
 import React from "react";
-import { useTodo } from "../../hooks/useTodo";
+/* import { useTodo } from "../../hooks/useTodo"; */
+import { useQuery } from "@apollo/client";
+import {GET_TODOS} from "../../graphql/queries"
+
 import { FcImport } from "react-icons/fc";
 import {
   TitleH6,
@@ -11,20 +14,26 @@ import {
 } from "../../componentsStyled";
 
 const TodoList = () => {
-  const { todos, dispatch } = useTodo();
+  /* const { todos, dispatch } = useTodo(); */
+const { loading, data } = useQuery(GET_TODOS);
 
+  const result =  useQuery(GET_TODOS);
+  console.log(result);
+  const load =  loading &&  <TitleH6>loading </TitleH6>
   const handleDeleteTodo = (todoToDelete) => {
-    dispatch({
+   /*  dispatch({
       type: "DELETE_TODO",
       payload: todoToDelete,
-    });
+    }); */
+    console.log(data);
   };
 
   return (
     <>
       <TitleH6>TodoList</TitleH6>
-      {todos.length > 0 ? (
-        todos.map((todo, index) => (
+      {load}
+      {data ? (
+        data.map((todo, index) => (
           <TodoListDivStly key={index}>
             <DivFlexRow>
               <DivFlexColunm>

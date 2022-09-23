@@ -1,5 +1,5 @@
-import { TodoProvider } from "./contextReducer/Todo-Context-Reducer/TodoProvider"; 
-import { ThemeProviderContextAndStyleComponents } from "./contextReducer/Theme-Context/themeProvider";
+import { TodoProvider } from "./context/Todo-Context-Reducer/TodoProvider"; 
+import { ThemeProviderContextAndStyleComponents } from "./context/Theme-Context/themeProvider";
 
 import CreateTodo from "./components/CreateTodo";
 import TodoList from "./components/TodoList";
