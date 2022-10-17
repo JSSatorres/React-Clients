@@ -1,4 +1,4 @@
-import { TodoProvider } from "./contextReducer/Todo-Context-Reducer/TodoProvider"; 
+import ReduxProvider from "./Redux/Provider"; 
 import { ThemeProviderContextAndStyleComponents } from "./contextReducer/Theme-Context/themeProvider";
 
 import CreateTodo from "./components/CreateTodo";
@@ -9,7 +9,7 @@ import {TitleH2,StyledWrapper} from "./componentsStyled"
 function App() {
 
   return (
-    <TodoProvider>
+    <ReduxProvider> 
       <ThemeProviderContextAndStyleComponents>
         <ThemeButton />  
         <StyledWrapper>
@@ -18,7 +18,7 @@ function App() {
           <TodoList  />
         </StyledWrapper>
       </ThemeProviderContextAndStyleComponents>   
-    </TodoProvider>
+      </ReduxProvider>   
   );
 }
 

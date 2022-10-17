@@ -1,38 +1,39 @@
 import {
-  GET_USER,
-  DELETE_USER,
-  ADD_USER,
-  EDIT_USER,
+  GET_TODO,
+  DELETE_TODO,
+  ADD_TODO,
+  EDIT_TODO,
   DELETE_ALL,
 } from "./types";
-import { dataAxios } from "./services";
+import { dataApi } from "../../api/dataApi"
 
-export const addUser = (data) => ({
-  type: ADD_USER,
+export const addTodo = (data) => ({
+  type: ADD_TODO,
+  payload: data
 });
 
-export const deleteOneUser = (id) => ({
-  type: DELETE_USER,
+export const deleteOneTodo = (id) => ({
+  type: DELETE_TODO,
   payload: id,
 });
 
-export const getAllUser = (data) => {
-  //es un dispacth dentro de un dispact y entre medias el Thunk  que hace de midelware en el archivo "store"
+export const getAllTodo= () => {
+  // es un dispacth dentro de un dispact y entre medias el Thunk  que hace de midelware en el archivo "store"
   return async (dispatch) => {
     try {
-      const apiResult = await dataAxios();
-      dispatch({ type: GET_USER, payload: apiResult });
+      const apiResult = await dataApi();
+      dispatch({ type: GET_TODO, payload: apiResult });
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-export const editUser = (id) => ({
-  type: EDIT_USER,
+export const editTodo = (id) => ({
+  type: EDIT_TODO,
   payload: id,
 });
 
-export const resetUser = () => ({
+export const resetTodo = () => ({
   type: DELETE_ALL,
 });

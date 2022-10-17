@@ -1,35 +1,34 @@
 import {INITIAL_STATE} from "./state";
 import {
-  GET_USER,
-  DELETE_USER,
-  ADD_USER,
+  GET_TODO ,
+  DELETE_TODO ,
+  ADD_TODO ,
   DELETE_ALL,
-  EDIT_USER,
+  EDIT_TODO ,
 } from "./types";
 
-const {db} = INITIAL_STATE
 
-const reducer = (state = db, action) => {
+const todo = (state = INITIAL_STATE , action) => {
   switch (action.type) {
-    case ADD_USER:
-      return db;
+    case ADD_TODO :
+      return [...state, action.payload];
 
-    case DELETE_USER:
-      const newData = state.filter((el) => el.id !== action.payload);
+    case DELETE_TODO :
+      const newData = state.filter((el) => el.title !== action.payload);
       return newData
 
-    case GET_USER:
-      return action.payload.data.data;
+    case GET_TODO :
+      return action.payload;
 
-    case EDIT_USER:
+    case EDIT_TODO :
       return newData
 
     case DELETE_ALL:
-      return db;
+      return [];
 
     default:
       return state;
   }
 };
 
-export default reducer;
+export default todo;
