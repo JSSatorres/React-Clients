@@ -18,7 +18,7 @@ const TodoList = () => {
 const { loading, data } = useQuery(GET_TODOS);
 
   const result =  useQuery(GET_TODOS);
-  console.log(result);
+
   const load =  loading &&  <TitleH6>loading </TitleH6>
   const handleDeleteTodo = (todoToDelete) => {
    /*  dispatch({

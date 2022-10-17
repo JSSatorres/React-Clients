@@ -1,5 +1,6 @@
-import React from "react";
-import { useTodo } from "../../hooks/useTodo";
+import React, {useContext, useEffect, useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteOneTodo,getAllTodo } from "../../Redux/todo/actions"
 import { FcImport } from "react-icons/fc";
 import {
   TitleH6,
@@ -10,15 +11,19 @@ import {
   TodoTitle,
 } from "../../componentsStyled";
 
-const TodoList = () => {
-  const { todos, dispatch } = useTodo();
 
-  const handleDeleteTodo = (todoToDelete) => {
-    dispatch({
-      type: "DELETE_TODO",
-      payload: todoToDelete,
-    });
+const TodoList = () => {
+  const todos = useSelector((state) => state.todo);
+  const dispatch = useDispatch();
+
+  const handleDeleteTodo = (deleteTodo) => {
+    dispatch(deleteOneTodo(deleteTodo));
   };
+
+  useEffect(() => {
+    dispatch(getAllTodo())
+  }, [])
+  
 
   return (
     <>
