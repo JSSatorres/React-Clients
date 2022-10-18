@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useTodo } from "../../hooks/useTodo";
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo } from "../../Redux/todo/actions"
 import { TitleH6,StyledFormWrapper,StyledDivForm ,StyledButton} from "../../componentsStyled";
 
 const CreateTodo = () => {
@@ -9,21 +10,16 @@ const CreateTodo = () => {
         description:""
       }   
 
-  const [newTodo, setNewTodo] = useState(INITIAL_STATE)
-  const {dispatch}= useTodo()  
+  const [newTodo, setNewTodo] = useState(INITIAL_STATE) 
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setNewTodo({...newTodo,[e.target.name]:e.target.value});
-  };
-  
+  };  
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({
-      type:"ADD_TODO",
-      payload:newTodo
-    });
-    setNewTodo(INITIAL_STATE)
-    e.target.reset()    
+    dispatch(addTodo(newTodo))
+    setNewTodo(INITIAL_STATE)  
   };  
 
   return (
@@ -36,7 +32,7 @@ const CreateTodo = () => {
             type="text"
             name="title"
             placeholder="Enter a new title Todo"
-            value={newTodo.title||""}
+            value={newTodo.title}
             required
             minLength="4"
             maxLength="18"
@@ -49,7 +45,7 @@ const CreateTodo = () => {
             type="text"
             name="description"
             placeholder="Enter a new description Todo"
-            value={newTodo.description||""}
+            value={newTodo.description}
             required
             minLength="4"
             maxLength="18"
@@ -58,7 +54,6 @@ const CreateTodo = () => {
         </StyledDivForm>
         <StyledButton type="submit>">Create todo</StyledButton>
       </StyledFormWrapper>
-     {/*  <h2>{[...newTodo,newTodo.title]}</h2> */}
     </>
   );
 };
