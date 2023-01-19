@@ -10,10 +10,8 @@ function useFetch(url) {
       setLoading(true)     
       axios.get(url)
       .then(res => {
-          setLoading(false);
-          console.log(res);
-          // res.data.content && setData(res.data.content);
-          // res.content && setData(res.content);
+          res.data && setData(res.data.todos)
+          setLoading(false)    
       })
       .catch(err => {
           setLoading(false)
