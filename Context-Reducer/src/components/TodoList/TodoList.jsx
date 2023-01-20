@@ -3,7 +3,8 @@ import useFetch from "../../hooks/useFetch";
 import TodoItem from "../TodoItem";
 
 const TodoList = () => {
-  const { data:todos, loading, error } = useFetch('http://localhost:5000/api/todo')
+  const url = 'http://localhost:5000/api/todo'
+  const { data:todos, loading, error } = useFetch(url)
 
   
   return (
