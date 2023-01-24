@@ -25,9 +25,9 @@ const TodoList = () => {
         {(draggableProvided) => (
           <TodoItem
             todo={todo}
-            // removeTodo={removeTodo}
-            // updateTodo={updateTodo}
-            // drag and drop configuration
+            removeTodo={removeTodo}
+            updateTodo={updateTodo}
+            drag and drop configuration
             ref={draggableProvided.innerRef}
             {...draggableProvided.dragHandleProps}
             {...draggableProvided.draggableProps}
